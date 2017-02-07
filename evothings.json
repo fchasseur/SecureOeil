@@ -1,0 +1,48 @@
+{
+  "name": "securoeil",
+  "version": "1.0.0",
+  "title": "securOeil",
+  "description": "App that aimed to send sms with location from a button push in the pocket",
+  "tags": [
+    {
+      "label": "arduino",
+      "type": "platform"
+    },
+    {
+      "label": "redbearlabs",
+      "type": "vendor"
+    },
+    {
+      "label": "ble",
+      "type": "comm"
+    }
+  ],
+  "libraries": [
+    {
+      "name": "jquery",
+      "version": "2.1.1"
+    }
+  ],
+  "plugins": [
+    {
+      "name": "cordova-plugin-ble",
+      "version": "2.0.0"
+    },
+    {
+      "name": "cordova-plugin-geolocation"
+    },
+    {
+      "name": "de.appplant.cordova.plugin.local-notification",
+      "version": "0.8.4"
+    }
+  ],
+  "index-file": "index.html",
+  "uuid": "08c3e53d-7cbc-4591-b903-933ccd06b66f",
+  "icon": "app-icon.png",
+  "doc-url": "http://evothings.com/2.2/doc/examples/redbearlab-simplecontrol.html",
+  "long-description": "App to communicate in both directions (Read/Write) with your RedBearLab BLE boards.",
+  "cordova-id": "be.trakk.securoeil",
+  "author-name": "Francois",
+  "author-email": "francois@trakk.be",
+  "author-url": "www.trakk.be"
+}
