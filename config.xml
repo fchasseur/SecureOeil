@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget
+   id="com.evothings.accelerometer-demo"
+   version="0.0.1"   
+   xmlns="http://www.w3.org/ns/widgets"
+   xmlns:gap="http://phonegap.com/ns/1.0">
+
+<name>Securoeil</name>
+<description>App that aimed to send sms with location from a button push in the pocket</description>
+<author email="francois@trakk.be" href="http://trakk.be">F.chasseru </author>
+<content src="index.html" />
+
+<gap:plugin name="cordova-plugin-sms" source="npm" />
+<gap:plugin name="cordova-plugin-ble" source="npm" />
+<gap:plugin name="cordova-plugin-geolocation" source="npm" />
+
+<access origin="*" /> <allow-intent href="http://*/*" />
+<allow-intent href="https://*/*" />
+
+<platform name="android">
+   <allow-intent href="market:*" />
+</platform>
+
+<platform name="ios">
+   <allow-intent href="itms:*" />
+   <allow-intent href="itms-apps:*" />
+</platform>
+</widget>
