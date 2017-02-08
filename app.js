@@ -201,13 +201,13 @@ app.connectTo = function(address)
 	device.connect(onConnectSuccess, onConnectFailure);
 };
 
-function str2ab(str) {
-  var buf = new ArrayBuffer(str.length*2); // 2 bytes for each char
+function str2byteArray(str) {
+  var buf = new ArrayBuffer(str.length); // 2 bytes for each char
   var bufView = new Uint8Array(buf);
   for (var i=0, strLen=str.length; i<strLen; i++) {
     bufView[i] = str.charCodeAt(i);
   }
-  return buf;
+  return bufView;
 }
 
 
@@ -217,7 +217,7 @@ app.sendData = function(data)
 	{
 		function onMessageSendSucces()
 		{
-			console.log('Succeded to send message.');
+			console.log('Succeded to send message : \' ' + data + '\'' );
 		}
 
 		function onMessageSendFailure(errorCode)
@@ -225,15 +225,12 @@ app.sendData = function(data)
 			console.log('Failed to send data with error: ' + errorCode);
 			app.disconnect('Failed to send data');
 		}
-
-		data = new Uint8Array( ['a'.charAt(),74,39]);
-		for(var i = 0 ; i < data.length; i++)
-		{
-			console.log(data[i])
-		}
+		
+		
+		var d = str2byteArray(data) ;//new Uint8Array( ['a'.charAt(),74,39]);
 		app.device.writeCharacteristic(
 			app.RBL_CHAR_RX_UUID,
-			data,
+			d,
 			onMessageSendSucces,
 			onMessageSendFailure
 		);
@@ -290,21 +287,3 @@ app.disconnect = function(errorMessage)
 	$('#startView').show();
 };
 
-app.toggelAnalog = function()
-{
-	if (analog_enabled)
-	{
-		analog_enabled = false;
-		app.sendData([0xA0,0x00,0x00]);
-		$('#analogDigitalResult').text('-');
-		$('#analogToggleButton').text('Enable Analog');
-		$('#analogToggleButton').removeClass('blue wide').addClass('green wide');
-	}
-	else
-	{
-		analog_enabled = true;
-		app.sendData([0xA0,0x01,0x00]);
-		$('#analogToggleButton').text('Disable Analog');
-		$('#analogToggleButton').removeClass('green wide').addClass('blue wide');
-	}
-};
