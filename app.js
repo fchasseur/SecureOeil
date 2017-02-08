@@ -23,7 +23,7 @@ document.addEventListener(
 		evothings.scriptsLoaded(app.initialize)
 		console.log("Existing Address : " + permanentStorage.getItem("blueFruitAddr"))
 		app.startScan( );
-
+		setInterval(app.checkBattery,30000);
 	},
 	false);
 
@@ -36,11 +36,19 @@ app.RBL_SERVICE_UUID = '6E400001-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_CHAR_TX_UUID = '6E400003-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_CHAR_RX_UUID = '6E400002-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_TX_UUID_DESCRIPTOR = '00002902-0000-1000-8000-00805f9b34fb';
+app.checkBattery = function()
+{
+	if( app.connected)
+	{
+		app.sendData('bat');
+	}
+}
 
 app.initialize = function()
 {
 	app.connected = false;
-	analog_enabled = false;
+	analog_enabled = false
+	;
 };
 
 app.startScan = function()
@@ -138,6 +146,7 @@ app.connectTo = function(address)
 					$('#controlView').show();
 					window.localStorage.setItem("blueFruitAddr", device.address);
 					evothings.easyble.stopScan();
+					 app.sendData("bat") ; //}, 1000);
 				},
 				function(errorCode)
 				{
@@ -217,7 +226,7 @@ app.sendData = function(data)
 	{
 		function onMessageSendSucces()
 		{
-			console.log('Succeded to send message : \' ' + data + '\'' );
+			console.log('Succeded to send message : \'' + data + '\'' );
 		}
 
 		function onMessageSendFailure(errorCode)
@@ -251,8 +260,19 @@ app.receivedData = function(data)
 	{
 		data = String.fromCharCode.apply(null, new Uint8Array(data));
 		console.log("Received data : "  + data);
-
-		$("#infoContent").html(data + "<br/>" + $("#infoContent").html() );
+		if(data.length > 0)
+		{
+			if( data[0] == "B")
+			{
+				var batteryLevel = data.split('#')[1];
+				batteryLevel= parseInt(batteryLevel);
+				$("#batteryLevel").html( (batteryLevel / 380 * 100).toFixed(1) + "%"  )
+			}
+			else
+			{
+				$("#infoContent").html(data + "<br/>" + $("#infoContent").html() );
+			}
+		}
 	}
 	else
 	{
