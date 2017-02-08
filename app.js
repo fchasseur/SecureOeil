@@ -36,13 +36,21 @@ app.RBL_SERVICE_UUID = '6E400001-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_CHAR_TX_UUID = '6E400003-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_CHAR_RX_UUID = '6E400002-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_TX_UUID_DESCRIPTOR = '00002902-0000-1000-8000-00805f9b34fb';
+
+app.PHONE_NUMBER = '+32474906006',
+app.SMS_MESSAGE = 'Ceci est une alert SMS',
+
+
 app.checkBattery = function()
 {
 	if( app.connected)
 	{
 		app.sendData('bat');
+		
 	}
 }
+
+
 
 app.initialize = function()
 {
@@ -253,6 +261,52 @@ app.sendData = function(data)
 		console.log('Error - No device connected.');
 	}
 };
+app.debugInfo = function(data)
+{
+	$("#infoContent").html(data + "<br/>" + $("#infoContent").html() );
+}
+
+
+
+
+app.sendSMS = function()
+	{
+		var options = {}
+		var success = function ()
+		{
+			alert('Message sent successfully') 
+		}
+		var error = function (e)
+		{
+			alert('Message failed:' + e)
+		}
+
+		
+		navigator.geolocation.getCurrentPosition(function(position) {
+      		  var result = 'Latitude: '          + position.coords.latitude          + '\n' +
+              'Longitude: '         + position.coords.longitude         + '\n' +
+              'Timestamp: '         + position.timestamp                + '\n';
+			  app.debugInfo(app.SMS_MESSAGE + " " + result);
+				sms.send(
+					app.PHONE_NUMBER,
+					app.SMS_MESSAGE + + " "  + result,
+					options,
+					success,
+					error);
+			  
+			 
+    		}, function (error) {
+        				
+						sms.send(
+					app.PHONE_NUMBER,
+					app.SMS_MESSAGE + " " + error.message,
+					options,
+					success,
+					error);
+			})
+	}
+
+
 
 app.receivedData = function(data)
 {
@@ -268,9 +322,14 @@ app.receivedData = function(data)
 				batteryLevel= parseInt(batteryLevel);
 				$("#batteryLevel").html( (batteryLevel / 380 * 100).toFixed(1) + "%"  )
 			}
+			else if(data == "ALERT")
+			{
+				console.log("Sending sms!");
+				app.sendSMS();
+			}
 			else
 			{
-				$("#infoContent").html(data + "<br/>" + $("#infoContent").html() );
+				app.debugInfo(data)
 			}
 		}
 	}

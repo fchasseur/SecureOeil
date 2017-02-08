@@ -31,6 +31,9 @@
     {
       "name": "cordova-plugin-geolocation"
     },
+     {
+      "name": "cordova-sms-plugin"
+    },
     {
       "name": "de.appplant.cordova.plugin.local-notification",
       "version": "0.8.4"
@@ -39,7 +42,7 @@
   "index-file": "index.html",
   "uuid": "08c3e53d-7cbc-4591-b903-933ccd06b66f",
   "icon": "app-icon.png",
-  "doc-url": "http://evothings.com/2.2/doc/examples/redbearlab-simplecontrol.html",
+  "doc-url": "http://www.trakk.be",
   "long-description": "App to communicate in both directions (Read/Write) with your RedBearLab BLE boards.",
   "cordova-id": "be.trakk.securoeil",
   "author-name": "Francois",
