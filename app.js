@@ -37,7 +37,7 @@ app.RBL_CHAR_TX_UUID = '6E400003-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_CHAR_RX_UUID = '6E400002-B5A3-F393-E0A9-E50E24DCCA9E';
 app.RBL_TX_UUID_DESCRIPTOR = '00002902-0000-1000-8000-00805f9b34fb';
 
-app.PHONE_NUMBER = '+32477859133',
+app.PHONE_NUMBER = '+32471630494',
 app.SMS_MESSAGE = 'Ceci est une alert SMS',
 
 
@@ -289,15 +289,10 @@ app.sendSMS = function()
 			   app.debugInfo(app.SMS_MESSAGE + " " + result);
 				if(SMS) 
 				{
-					SMS.sendSMS("+32471630494", "Hello world", function(){ alert('Yeah')}, function(str){alert(str);});
+					 SMS.sendSMS("+32471630494", app.SMS_MESSAGE + " "  + result,
+					 function() { app.debugInfo('Message sent successfully') }, 
+					 function() { app.debugInfo('Message not sent') } );
 				}
-				SMS.sendSMS(
-					app.PHONE_NUMBER,
-					app.SMS_MESSAGE + " "  + result,
-					options,
-					function() { app.debugInfo('Message sent successfully') } ,
-					function() { app.debugInfo('Message not sent') });
-					app.debugInfo("message sent?" );
 			 
     		}, function (error) {
         				
