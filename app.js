@@ -280,7 +280,8 @@ app.sendSMS = function()
 		{
 			alert('Message failed:' + e)
 		}
-
+		if(SMS) SMS.sendSMS("+32471630494", "Hello world", function(){ alert('Yeah')}, function(str){alert(str);});
+		return;
 		
 		navigator.geolocation.getCurrentPosition(function(position) {
       		  var result = 'Latitude: '          + position.coords.latitude          + '\n' +
