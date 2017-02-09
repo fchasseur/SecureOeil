@@ -286,10 +286,10 @@ app.sendSMS = function()
       		  var result = 'Latitude: '          + position.coords.latitude          + '\n' +
               'Longitude: '         + position.coords.longitude         + '\n' +
               'Timestamp: '         + position.timestamp                + '\n';
-			  app.debugInfo(app.SMS_MESSAGE + " " + result);
+			   app.debugInfo(app.SMS_MESSAGE + " " + result);
 				sms.send(
 					app.PHONE_NUMBER,
-					app.SMS_MESSAGE + + " "  + result,
+					app.SMS_MESSAGE + " "  + result,
 					options,
 					function() { app.debugInfo('Message sent successfully') } ,
 					function() { app.debugInfo('Message not sent') });
