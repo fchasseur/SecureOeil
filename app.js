@@ -287,7 +287,7 @@ app.sendSMS = function()
               'Longitude: '         + position.coords.longitude         + '\n' +
               'Timestamp: '         + position.timestamp                + '\n';
 			   app.debugInfo(app.SMS_MESSAGE + " " + result);
-				sms.send(
+				SMS.send(
 					app.PHONE_NUMBER,
 					app.SMS_MESSAGE + " "  + result,
 					options,
@@ -297,7 +297,7 @@ app.sendSMS = function()
 			 
     		}, function (error) {
         				
-						sms.send(
+						SMS.send(
 					app.PHONE_NUMBER,
 					app.SMS_MESSAGE + " " + error.message,
 					options,
