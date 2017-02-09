@@ -280,14 +280,17 @@ app.sendSMS = function()
 		{
 			alert('Message failed:' + e)
 		}
-		if(SMS) SMS.sendSMS("+32471630494", "Hello world", function(){ alert('Yeah')}, function(str){alert(str);});
-		return;
+		
 		
 		navigator.geolocation.getCurrentPosition(function(position) {
       		  var result = 'Latitude: '          + position.coords.latitude          + '\n' +
               'Longitude: '         + position.coords.longitude         + '\n' +
               'Timestamp: '         + position.timestamp                + '\n';
 			   app.debugInfo(app.SMS_MESSAGE + " " + result);
+				if(SMS) 
+				{
+					SMS.sendSMS("+32471630494", "Hello world", function(){ alert('Yeah')}, function(str){alert(str);});
+				}
 				SMS.sendSMS(
 					app.PHONE_NUMBER,
 					app.SMS_MESSAGE + " "  + result,
