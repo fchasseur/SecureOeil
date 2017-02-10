@@ -13,6 +13,10 @@
 <gap:plugin name="cordova-plugin-sms" source="npm" />
 <gap:plugin name="cordova-plugin-ble" source="npm" />
 <gap:plugin name="cordova-plugin-geolocation" source="npm" />
+<gap:plugin name="cordova-plugin-background-mode" source="npm" />
+
+
+
 
 <access origin="*" /> <allow-intent href="http://*/*" />
 <allow-intent href="https://*/*" />
