@@ -155,7 +155,7 @@ app.connectTo = function(address)
 					window.localStorage.setItem("blueFruitAddr", device.address);
 					evothings.easyble.stopScan();
 					app.sendData("bat") ; //}, 1000);
-					cordova.plugins.backgroundMode.enable();	
+				
 					
 				},
 				function(errorCode)
@@ -323,7 +323,7 @@ app.receivedData = function(data)
 			{
 				var batteryLevel = data.split('#')[1];
 				batteryLevel= parseInt(batteryLevel);
-				$("#batteryLevel").html( (batteryLevel / 380 * 100).toFixed(1) + "%"  )
+				$("#batteryLevel").html( (batteryLevel /100 ).toFixed(1) + "v"  )
 			}
 			else if(data == "ALERT")
 			{
@@ -354,7 +354,6 @@ app.disconnect = function(errorMessage)
 	}
 
 	app.connected = false;
-	cordova.plugins.backgroundMode.disable();
 	app.device = null;
 
 	// Stop any ongoing scan and close devices.
