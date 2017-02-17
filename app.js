@@ -153,7 +153,7 @@ app.connectTo = function(address)
 					$('#scanResultView').hide();
 					$('#controlView').show();
 					window.localStorage.setItem("blueFruitAddr", device.address);
-					evothings.easyble.stopScan();
+					evothings.easyble.stopScan(); 
 					app.sendData("bat") ; //}, 1000);
 				
 					
