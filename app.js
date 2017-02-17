@@ -291,7 +291,7 @@ app.sendSMS = function()
 			   app.debugInfo(app.SMS_MESSAGE + " " + result);
 				if(SMS) 
 				{
-					 SMS.sendSMS("+32471630494", app.SMS_MESSAGE + " "  + result,
+					 SMS.sendSMS("", app.SMS_MESSAGE + " "  + result,
 					 function() { app.debugInfo('Message sent successfully') }, 
 					 function() { app.debugInfo('Message not sent') } );
 				}
