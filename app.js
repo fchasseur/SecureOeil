@@ -375,8 +375,8 @@ app.disconnect = function(errorMessage)
 app.goToConfig = function()
 {
 
-	$('message').text(permanentStorage.getItem("messageText"));
-	$('phoneNumber').text(permanentStorage.getItem("phoneNumber"));
+	$('#message').val(permanentStorage.getItem("messageText"));
+	$('#phoneNumber').val(permanentStorage.getItem("phoneNumber"));
 	
 	$('#historyView').hide();
  	$('#loadingView').hide();
