@@ -282,16 +282,18 @@ app.sendSMS = function()
 		{
 			alert('Message failed:' + e)
 		}
-		
+		var message = permanentStorage.getItem("messageText");
+	 	var phoneNumber = permanentStorage.getItem("phoneNumber");
+	
 		
 		navigator.geolocation.getCurrentPosition(function(position) {
-      		  var result = 'Latitude: '          + position.coords.latitude          + '\n' +
+      		  var result =  message  +  " " + 'Latitude: '          + position.coords.latitude          + '\n' +
               'Longitude: '         + position.coords.longitude         + '\n' +
               'Timestamp: '         + position.timestamp                + '\n';
 			   app.debugInfo(app.SMS_MESSAGE + " " + result);
 				if(SMS) 
 				{
-					 SMS.sendSMS("", app.SMS_MESSAGE + " "  + result,
+					 SMS.sendSMS(phoneNumber, app.SMS_MESSAGE + " "  + result,
 					 function() { app.debugInfo('Message sent successfully') }, 
 					 function() { app.debugInfo('Message not sent') } );
 				}
@@ -299,7 +301,7 @@ app.sendSMS = function()
     		}, function (error) {
         				
 						SMS.sendSMS(
-					app.PHONE_NUMBER,
+					phoneNumber,
 					app.SMS_MESSAGE + " " + error.message,
 					options,
 					function() { app.debugInfo('Message sent successfully') } ,
