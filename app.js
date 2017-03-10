@@ -386,8 +386,10 @@ app.goToConfig = function()
 };
 app.saveConfig = function()
 {
-	permanentStorage.setItem("phoneNumber", $('phoneNumber').text());
-	permanentStorage.setItem("messageText", $('message').text());
+	console.log("XXX"  + $('#phoneNumber').val());
+
+	permanentStorage.setItem("phoneNumber", $('#phoneNumber').val());
+	permanentStorage.setItem("messageText", $('#message').val());
 			
  	$('#historyView').hide();
 	 $('#loadingView').hide();
