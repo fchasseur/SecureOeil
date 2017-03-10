@@ -2,13 +2,10 @@
 <html>
 
 <head>
-
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, user-scalable=no,
 		shrink-to-fit=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0" />
-
-	<title>Redbear Labs - Simple Control</title>
-
+	<title>SecurOeil</title>
 	<style>
 		@import 'ui/css/evothings-app.css';
 		@import 'app.css';
@@ -28,47 +25,46 @@
 </head>
 
 <body ontouchstart="">
-
 	<header>
-		<button class="back" onclick="history.back()">
-			<img src="ui/images/arrow-left.svg" />
-		</button>
-		<img class="logotype" src="ui/images/logo.svg" alt="Evothings" />
-
+		<h1 style="color:black">SecurOeil</h1>
 	</header>
-
-	<h1>SecurOeil</h1>
+	<img class="logotype" src="ui/images/logo.svg" width="200px" style="margin-left:50px" alt="Evothings" />
+	
 
 	<div id="startView">
-		<button class="red wide" onclick="app.startScan()"> Scan </button>
+		<button class="" onclick="app.startScan()"> Scan </button>
 	</div>
 
 	<div id="scanResultView" style="display:none">
 
 	</div>
 	<div id="controlView" style="display:none">
-		<h2>Digital Out - Pin 2</h2>
+		<div style="margin-left: 20px"> 
+			<button class="" onclick="app.disconnect()">
+				<img src="img/connexion.svg" height="60px">
+			</button>
+			<button class="" onclick="app.goToConfig()">
+				<img src="img/configuration.svg" height="60px">
+			</button>
+			<button class="" onclick="app.history()">
+				<img src="img/historique.svg" height="60px">
+			</button>
+		 </div>
+	</div>
 
-		<button class="green wide" onclick="app.sendData('on')">
-			High
+	<div id="configView" style="display:none">
+		<label>Numéro de téléphone</label>
+		<br/>
+		<input type="text" id="phoneNumber"/> 
+		<br/>
+		<label>Message Perso</label>
+		<br/>
+		<textarea id="message" style="min-height: 120px;"> </textarea> 
+
+		<button class="blue wide" onclick="app.saveConfig()">
+			Sauvegarder
 		</button>
-
-		<button class="green wide" onclick="app.sendData('off')">
-			Low
-		</button>
-		<button  id = "batteryLevel" class="green wide" onclick="app.sendData('bat')">
-			BAT
-		</button>
-		<h2> Debug </h2>
-		<div  id="infoContent">
-		</div>
-
-		<hr />
-
-		<button id="disconnectButton" class="red wide" onclick="app.disconnect()">
-			Disconnect
-		</button>
-
+		
 	</div>
 
 	<div id="loadingView" style="display:none">
@@ -80,6 +76,14 @@
 
 	</div>
 
+	<div id="historyView" style="display:none">
+		<h2> Historique </h2>
+			<div  id="infoContent">
+			</div>
+			<button class="wide" onclick="app.goToHome()">Home</button>
+	
+
+	</div>
 </body>
 
 </html>

@@ -369,3 +369,47 @@ app.disconnect = function(errorMessage)
 	$('#startView').show();
 };
 
+
+app.goToConfig = function()
+{
+
+	$('message').text(permanentStorage.getItem("messageText"));
+	$('phoneNumber').text(permanentStorage.getItem("phoneNumber"));
+	
+	$('#historyView').hide();
+ 	$('#loadingView').hide();
+	$('#scanResultView').hide();
+	$('#controlView').hide();
+	$('#configView').show();
+};
+app.saveConfig = function()
+{
+	permanentStorage.setItem("phoneNumber", $('phoneNumber').text());
+	permanentStorage.setItem("messageText", $('message').text());
+			
+ 	$('#historyView').hide();
+	 $('#loadingView').hide();
+	$('#scanResultView').hide();
+	$('#configView').hide();
+	$('#controlView').show();		
+};
+app.history = function()
+{
+
+
+ 	$('#historyView').hide();
+ 	$('#loadingView').hide();
+	$('#scanResultView').hide();
+	$('#controlView').hide();
+	$('#historyView').show();
+};
+app.goToHome = function()
+{
+
+
+ 	$('#historyView').hide();
+ 	$('#loadingView').hide();
+	$('#scanResultView').hide();
+	$('#historyView').hide();
+	$('#controlView').show();
+};
